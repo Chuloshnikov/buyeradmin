@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+input, textarea, select {
+    @apply border border-gray-500 px-1 w-full hover:border-gray-900;
+    @apply mb-2 resize-none;
+}

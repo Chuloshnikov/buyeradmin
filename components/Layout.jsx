@@ -1,52 +1,80 @@
-import React, { useState } from 'react';
-import axios from "axios";
+import { useFormik } from "formik";
+import Navbar from '@/components/Navbar';
+import React, { useState } from "react";
+import axios from 'axios';
 
 const Layout = ({ children }) => {
-    const [login, setLogin] = useState(false);
-    const [username, setUsername] = useState(null);
-    const [password, setPassword] = useState(null);
+    const [access, setAccess] = useState(false);
     const [error, setError] = useState(false);
+    
+
+    const formik = useFormik({
+        initialValues: {
+            username: '',
+            password: '',
+        },
+        onSubmit: async values => {
+            try {
+                console.log(values);
+                await axios.post("http://localhost:3000/api/login", values );
+                setAccess(true);
+            } catch (err) {
+                console.log(err);
+                setError(true);
+            }
+            
+        },
+    });
 
 
-    const handleClick = async () => {
-        try {
-            await axios.post("http://localhost:3000/api/login", {username, password});
-            setLogin(true);
-        } catch(err) {
-            console.log(error);
-        }
+    if (!access) {
+                return (
+                    <>
+                        <div className='bg-white w-screen h-screen flex items-center'>
+                            <div className='flex flex-col items-center text-center w-full'>
+                                <div className='border p-5 shadow-containerShadow'>
+                                    <h2 className='text-orange-400 text-bold text-2xl mb-2'>Welcome!</h2>
+                                    <form onSubmit={formik.handleSubmit} className='flex flex-col gap-2'>  
+                                    <input 
+                                    onChange={formik.handleChange}
+                                    value={formik.values.username}
+                                    type="text"
+                                    name="username" 
+                                    placeholder='Enter your username...'
+                                    required
+                                    />
+                                    <input 
+                                    onChange={formik.handleChange}
+                                    value={formik.values.password}
+                                    type="password" 
+                                    name="password"
+                                    placeholder='Enter your password...'
+                                    required
+                                    />
+                                    <button 
+                                        type="submit"
+                                        className='bg-orange-400 text-white p-1 px-2 text-base font-semibold
+                                            hover:scale-105 duration-300
+                                            '>
+                                            Login
+                                    </button>
+                                    </form>
+                                    {error ? <span className="text-red-500 font-medium">Wrong Credentials!</span> : ""}
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                )
     }
 
-  return (
-    <>
-    <div className='bg-white w-screen h-screen flex items-center'>
-        <div className='flex flex-col items-center text-center w-full'>
-            <div className='border p-5 shadow-containerShadow'>
-                <h2 className='text-orange-400 text-bold text-2xl mb-2'>Welcome!</h2>
-                <form className='flex flex-col gap-2'>  
-                <input 
-                onChange={(e) => setUsername(e.target.value)}
-                type="text" 
-                placeholder='Enter your username...'
-                />
-                <input 
-                onChange={(e) => setPassword(e.target.value)}
-                type="password" 
-                placeholder='Enter your password...'
-                />
-                <button 
-                    onClick={handleClick}
-                    className='bg-orange-400 text-white p-1 px-2 text-base font-semibold
-                        hover:scale-105 duration-300
-                        '>
-                        Login
-                </button>
-                </form>
+    return (
+        <div className='bg-gray-800 min-h-screen flex'>
+          <Navbar/>
+            <div className='bg-white flex-grow mt-2 mr-2 rounded-lg p-4'>
+            {children}
             </div>
         </div>
-    </div>
-</>
-  )
+        )
 }
 
 export default Layout;

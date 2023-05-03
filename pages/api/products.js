@@ -6,6 +6,11 @@ export default async function handler(req, res) {
 
     await dbConnect();
 
+    if (method === 'GET') {
+        const products = await Product.find();
+        res.json(products);
+    }
+
     if (method === 'POST') {
         const {title, brand, description, price, oldPrice, sizes, category, quantity} = req.body;
         const productDoc = await Product.create({

@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Layout from '@/components/Layout';
 import Link from "next/link";
 
+import axios from 'axios';
+
 const Products = () => {
+  useEffect(() => {
+    axios.get('/api/products').then(response => {
+      console.log(response.data);
+    })
+}, [])
+
   return (
     <Layout>
         <Link 

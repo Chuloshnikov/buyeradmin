@@ -23,7 +23,7 @@ const Navbar = () => {
         <div className='flex'>
           <span className='text-3xl font-bold text-orange-600'>B</span>
           <div className='rounded-full overflow-hidden border-4 border-orange-600'>
-              <Image src={logo} className="w-8 h-8"/>
+              <Image src={logo} alt="logo" className="w-8 h-8"/>
           </div>
           <span className='text-3xl font-bold text-orange-600'>A</span>
           </div>

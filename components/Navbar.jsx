@@ -8,7 +8,7 @@ import { AiOutlineHome, AiOutlineInbox, AiOutlineUnorderedList, AiOutlineSetting
 
 const Navbar = () => {
 
-  const inactiveLink = "flex text-white items-center gap-1 p-1 pr-4";
+  const inactiveLink = "flex items-center gap-1 p-1 pr-4";
   const activeLink = inactiveLink+" bg-white text-orange-600 rounded-l-lg pr-4";
 
   const router = useRouter();
@@ -16,9 +16,9 @@ const Navbar = () => {
   
   
   return (
-    <aside className='pt-4 pl-4'>
+    <aside className='pt-4 pl-4 text-white'>
       <Link 
-      href={"/dashboard"}
+      href={"/"}
       className='flex flex-col items-center pr-4'>
         <div className='flex'>
           <span className='text-3xl font-bold text-orange-600'>B</span>
@@ -31,8 +31,8 @@ const Navbar = () => {
       </Link>
         <nav className='flex flex-col gap-3 mt-10 font-semibold'>
           <Link 
-              href={'/dashboard'}
-              className={pathname === '/dashboard' ? activeLink : inactiveLink}
+              href={'/'}
+              className={pathname === '/' ? activeLink : inactiveLink}
               >
                 <AiOutlineHome/>
                 Dashboard

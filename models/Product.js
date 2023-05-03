@@ -2,9 +2,6 @@ import mongoose from "mongoose";
 
 
 const ProductSchema = new mongoose.Schema({
-    _id: {
-        type: Number, required: true, 
-    },
     title: {
         type: String, required: true, maxlength: 60
     },
@@ -25,7 +22,7 @@ const ProductSchema = new mongoose.Schema({
     },
     images: {
         type: [{type: String}]
-    }
+    },
     category: {
         type: String, required: true, maxlength: 60
     },
@@ -36,4 +33,4 @@ const ProductSchema = new mongoose.Schema({
 );
 
 
-export default mongoose.models.ProductData || mongoose.model("ProductData", ProductSchema);
+export default mongoose.models.Product || mongoose.model("Product", ProductSchema);

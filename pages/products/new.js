@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import Layout from '@/components/Layout';
 import axios from 'axios';
 
@@ -6,19 +7,25 @@ const NewProduct = () => {
     const [title, setTitle] = useState('');
     const [brand, setBrand] = useState('');
     const [description, setDescription] = useState('');
-    const [price, setPrice] = useState(null);
-    const [oldPrice, setOldPrice] = useState(null);
+    const [price, setPrice] = useState(0);
+    const [oldPrice, setOldPrice] = useState(0);
     const [sizes, setSizes] = useState('');
     const [category, setCategory] = useState('');
-    const [quantity, setQuantity] = useState(null);
+    const [quantity, setQuantity] = useState(0);
+    const [goToProducts, setGoToProducts] = useState(false);
 
-    const createProduct = async () => {
+    const router = useRouter();
+
+    const createProduct = async (e) => {
         e.preventDefault();
         const data = {title, brand, description, price, oldPrice, sizes, category, quantity};
         await axios.post('/api/products', data);
+        setGoToProducts(true);
     }
 
-
+    if (goToProducts) {
+        router.push('/products');
+    }
 
   return (
     <Layout>
@@ -88,7 +95,7 @@ const NewProduct = () => {
                     <input
                     onChange={e => setQuantity(e.target.value)}
                     value={quantity}
-                     type="text" 
+                     type="number" 
                      placeholder='product quantity'
                      />
                     <label>Images:</label>

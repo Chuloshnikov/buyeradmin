@@ -70,7 +70,7 @@ const Layout = ({ children }) => {
     return (
         <div className='bg-orange-400 min-h-screen flex'>
           <Navbar/>
-            <div className='bg-white flex-grow mt-2 mr-2 rounded-lg p-4'>
+            <div className='bg-white flex-grow p-4'>
             {children}
             </div>
         </div>

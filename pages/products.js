@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Layout from '@/components/Layout';
 import Link from "next/link";
 
-import { BsPencilSquare } from 'react-icons/bs';
+import { BsPencilSquare, BsTrash3Fill } from 'react-icons/bs';
 
 import axios from 'axios';
 
@@ -34,7 +34,7 @@ const Products = () => {
                 <td>Product size</td>
                 <td>Product category</td>
                 <td>Product quantity</td>
-                <td>Edit product</td>
+                <td>Edit/Delete</td>
               </tr>
           </thead>
           <tbody>
@@ -47,9 +47,17 @@ const Products = () => {
                 <td>{product.category}</td>
                 <td>{product.quantity}</td>
                 <td>  
-                  <Link className='flex items-center gap-1' href={`/products/edit/${product._id}`}>
+                  <Link className='flex items-center gap-1' 
+                  href={`/products/edit/${product._id}`}
+                  >
                     <BsPencilSquare/>
                       Edit
+                  </Link>
+                  <Link className='flex items-center gap-1'
+                  href={`/products/delete/${product._id}`}
+                  >
+                    <BsTrash3Fill/>
+                      Delete
                   </Link>
                 </td>
               </tr>

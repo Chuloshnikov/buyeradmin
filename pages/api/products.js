@@ -7,8 +7,12 @@ export default async function handler(req, res) {
     await dbConnect();
 
     if (method === 'GET') {
-        const products = await Product.find();
-        res.json(products);
+        if (req.query?.id) {
+            res.json(await Product.findOne({_id: req.query.id}));
+        } else {
+            res.json(await Product.find());
+        }
+        
     }
 
     if (method === 'POST') {
@@ -24,5 +28,11 @@ export default async function handler(req, res) {
             quantity,
         })
         res.json(productDoc);
+    }
+
+    if (method === 'PUT') {
+        const {title, brand, description, price, oldPrice, sizes, category, quantity, _id} = req.body;
+        await Product.updateOne({_id}, {title, brand, description, price, oldPrice, sizes, category, quantity});
+        res.json(true);
     }
 }

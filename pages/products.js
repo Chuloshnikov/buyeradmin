@@ -39,7 +39,7 @@ const Products = () => {
           </thead>
           <tbody>
             {products.map((product) => (
-              <tr>
+              <tr key={product._id}>
                 <td>{product.title}</td>
                 <td>{product.brand}</td>
                 <td>{product.price}</td>

@@ -5,15 +5,20 @@ import Link from "next/link";
 import { BsPencilSquare, BsTrash3Fill } from 'react-icons/bs';
 
 import axios from 'axios';
+import ProductPageSpinner from '@/components/ProductPageSpinner';
 
 const Products = () => {
 
   const [products, setProducts] =useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     axios.get('/api/products').then(response => {
       setProducts(response.data);
+      setIsLoading(false);
     })
+    
 }, [])
 
   return (
@@ -64,6 +69,7 @@ const Products = () => {
             ))}
           </tbody>
         </table>
+        {isLoading && <ProductPageSpinner/>}
     </Layout>
     
   )

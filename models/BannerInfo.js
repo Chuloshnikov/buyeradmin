@@ -7,7 +7,7 @@ const BannerInfoSchema = new mongoose.Schema({
     description: {
         type: String, required: true, maxlength: 200
     },
-    image: {
+    imageUrl: {
         type: String, required: true,
     }
 });

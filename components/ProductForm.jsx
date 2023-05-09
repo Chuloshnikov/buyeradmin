@@ -97,6 +97,7 @@ const ProductForm = ({
                     onChange={e => setDescription(e.target.value)}
                     value={description}
                      placeholder='product description'
+                     required
                      />
                 </div>
                 <div className='flex flex-col gap-1'>

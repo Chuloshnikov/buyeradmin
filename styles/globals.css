@@ -20,7 +20,7 @@ label {
 }
 
 .btn-primary {
-    @apply bg-orange-400 py-1 px-2 hover:scale-105 duration-300
+    @apply bg-orange-400 text-white py-1 px-2 hover:scale-105 duration-300
 }
 
 table.basic {
@@ -50,3 +50,4 @@ table.basic a{
 .btn-default {
     @apply bg-gray-500 text-white;
 }
+

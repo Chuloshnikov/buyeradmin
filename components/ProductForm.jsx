@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import Layout from '@/components/Layout';
 import axios from 'axios';
 import { ReactSortable } from "react-sortablejs";
 
@@ -11,7 +10,7 @@ const ProductForm = ({
     _id,
     title: existingTitle, 
     brand: existingBrand, 
-    description: existingDescription , 
+    description: existingDescription, 
     price: existingPrice, 
     oldPrice: existingOldPrice, 
     sizes: existingSizes, 

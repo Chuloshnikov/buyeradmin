@@ -23,6 +23,7 @@ const Products = () => {
 
   return (
     <Layout>
+        <h2 className='text-gray-800 text-lg font-bold mb-2'>Products</h2>
         <Link 
           className='text-white bg-orange-400 py-1 px-2 
           rounded-md inline-block hover:scale-105 duration-300' 

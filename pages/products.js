@@ -5,7 +5,7 @@ import Link from "next/link";
 import { BsPencilSquare, BsTrash3Fill } from 'react-icons/bs';
 
 import axios from 'axios';
-import ProductPageSpinner from '@/components/ProductPageSpinner';
+import PageSpinner from '@/components/PageSpinner';
 
 const Products = () => {
 
@@ -70,7 +70,7 @@ const Products = () => {
             ))}
           </tbody>
         </table>
-        {isLoading && <ProductPageSpinner/>}
+        {isLoading && <PageSpinner/>}
     </Layout>
     
   )

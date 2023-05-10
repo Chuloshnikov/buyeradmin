@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from 'next/router';
 
 import logo from '../public/images/logo.png';
-import { AiOutlineHome, AiOutlineInbox, AiOutlineUnorderedList, AiOutlineSetting } from "react-icons/ai";
+import { AiOutlineHome, AiOutlineInbox, AiOutlineUnorderedList, AiOutlineSetting, AiOutlineLogout } from "react-icons/ai";
 
 const Navbar = () => {
 
@@ -58,6 +58,12 @@ const Navbar = () => {
                 <AiOutlineSetting/>
                 Settings
             </Link>
+            <button 
+            className={inactiveLink}
+            >
+                <AiOutlineLogout/>
+                Logout
+            </button>
         </nav>
     </aside>
   )

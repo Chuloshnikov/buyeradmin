@@ -1,51 +1,40 @@
-import { useFormik } from "formik";
 import Navbar from '@/components/Navbar';
-import React, { useState } from "react";
-import axios from 'axios';
+import React, { useState } from 'react';
+import { useSession, signIn, signOut } from "next-auth/react";
+
+
 
 const Layout = ({ children }) => {
-    const [access, setAccess] = useState(true);
-    const [error, setError] = useState(false);
+    const [username, setUserName] = useState();
+    const [password, setPassword] = useState();
+    const {data: session } = useSession();
     
 
-    const formik = useFormik({
-        initialValues: {
-            username: '',
-            password: '',
-        },
-        onSubmit: async values => {
-            try {
-                console.log(values);
-                await axios.post("http://localhost:3000/api/login", values );
-                setAccess(!access);
-            } catch (err) {
-                console.log(err);
-                setError(true);
-            }
-            
-        },
-    });
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        signIn('credentials', { username, password});
+    }
 
 
-    if (!access) {
+    if (!session) {
                 return (
                     <>
                         <div className='bg-white w-screen h-screen flex items-center'>
                             <div className='flex flex-col items-center text-center w-full'>
                                 <div className='border p-5 shadow-containerShadow'>
                                     <h2 className='text-orange-400 text-bold text-2xl mb-2'>Welcome!</h2>
-                                    <form onSubmit={formik.handleSubmit} className='flex flex-col gap-2'>  
+                                    <form onSubmit={handleSubmit} className='flex flex-col gap-2'>  
                                     <input 
-                                    onChange={formik.handleChange}
-                                    value={formik.values.username}
+                                    onChange={e => setUserName(e.target.value)}
+                                    value={username}
                                     type="text"
                                     name="username" 
                                     placeholder='Enter your username...'
                                     required
                                     />
-                                    <input 
-                                    onChange={formik.handleChange}
-                                    value={formik.values.password}
+                                    <input
+                                    onChange={e => setPassword(e.target.value)}
+                                    value={password}
                                     type="password" 
                                     name="password"
                                     placeholder='Enter your password...'
@@ -59,7 +48,6 @@ const Layout = ({ children }) => {
                                             Login
                                     </button>
                                     </form>
-                                    {error ? <span className="text-red-500 font-medium">Wrong Credentials!</span> : ""}
                                 </div>
                             </div>
                         </div>
@@ -67,14 +55,17 @@ const Layout = ({ children }) => {
                 )
     }
 
-    return (
-        <div className='bg-orange-400 min-h-screen flex'>
-          <Navbar/>
-            <div className='bg-white flex-grow p-4'>
-            {children}
+        return (
+            <div className='bg-orange-400 min-h-screen flex'>
+              <Navbar/>
+                <div className='bg-white flex-grow p-4'>
+                {children}
+                </div>
             </div>
-        </div>
         )
+   
+    
+       
 }
 
 export default Layout;

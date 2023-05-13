@@ -11,7 +11,6 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.328.0",
     "axios": "^1.4.0",
-    "cookie": "^0.5.0",
     "dotenv": "^16.0.3",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.1",
@@ -22,6 +21,7 @@
     "multiparty": "^4.2.3",
     "next": "13.3.1",
     "next-auth": "^4.22.1",
+    "passport-local": "^1.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",

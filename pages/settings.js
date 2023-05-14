@@ -27,7 +27,7 @@ const Settings = () => {
       <div>
         <h2 className='text-gray-800 text-lg font-bold mb-2'>Banner info settings</h2>
         <Link className='text-white bg-orange-400 py-1 px-2 
-          rounded-md inline-block hover:scale-105 duration-300' 
+          rounded-sm inline-block hover:scale-105 duration-300' 
           href={'/banner/new'}>Add new banner</Link>
           <div className='p-4 flex flex-wrap'>
               {banners.map((banner => (
@@ -40,7 +40,7 @@ const Settings = () => {
                     <div>
                       <Link className='flex items-center gap-1
                        bg-orange-400 text-white py-1 px-2 
-                       inline-flex rounded-md text-sm hover:scale-105 
+                       inline-flex rounded-sm text-sm hover:scale-105 
                        duration-300 mr-1' 
                           href={`/banner/edit/${banner._id}`}
                         >
@@ -49,7 +49,7 @@ const Settings = () => {
                       </Link>
                       <Link className='flex items-center gap-1 
                       bg-orange-400 text-white py-1 px-2 
-                      inline-flex rounded-md text-sm hover:scale-105 
+                      inline-flex rounded-sm text-sm hover:scale-105 
                       duration-300 mr-1'
                           href={`/banner/delete/${banner._id}`}
                         >

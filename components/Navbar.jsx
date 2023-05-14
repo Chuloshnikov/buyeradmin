@@ -18,16 +18,16 @@ const Navbar = ({ showNav, setShowNav }) => {
   
   
   return (
-    <aside className={showNav ? 'pt-4 pl-4 text-white sticky' : 'offSpan ' + 'pt-4 pl-4 text-white sticky'}>
+    <aside className={showNav ? 'pt-4 pl-4 text-white sticky' : 'offSpan ' + 'pt-4 pl-2 text-white sticky'}>
       <Link 
       href={"/"}
-      className='flex flex-col items-center pr-4'>
+      className='flex flex-col items-center pr-2 lg:pr-4'>
         <div className='flex'>
-          <span className='text-3xl font-bold text-orange-600'>B</span>
+          <span className='hidden lg:block text-xl lg:text-3xl font-bold text-orange-600'>B</span>
           <div className='rounded-full overflow-hidden border-4 border-orange-600'>
-              <Image src={logo} alt="logo" className="w-8 h-8"/>
+              <Image src={logo} alt="logo" className="w-6 h-6 lg:w-8 lg:h-8"/>
           </div>
-          <span className='text-3xl font-bold text-orange-600'>A</span>
+          <span className='hidden lg:block text-xl lg:text-3xl font-bold text-orange-600'>A</span>
           </div>
         <span className='text-white'>Admin Panel</span>
       </Link>

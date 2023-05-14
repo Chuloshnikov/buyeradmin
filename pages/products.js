@@ -26,7 +26,7 @@ const Products = () => {
         <h2 className='text-gray-800 text-lg font-bold mb-2'>Products</h2>
         <Link 
           className='text-white bg-orange-400 py-1 px-2 
-          rounded-md inline-block hover:scale-105 duration-300' 
+          rounded-sm inline-block hover:scale-105 duration-300' 
           href={'/products/new'}
           >
             Add new product
@@ -35,11 +35,11 @@ const Products = () => {
           <thead>
               <tr>
                 <td>Product name</td>
-                <td>Product brand</td>
-                <td>Product price</td>
-                <td>Product size</td>
-                <td>Product category</td>
-                <td>Product quantity</td>
+                <td className='hidden md:table-cell'>Product brand</td>
+                <td className='hidden md:table-cell'>Product price</td>
+                <td className='hidden md:table-cell'>Product size</td>
+                <td className='hidden md:table-cell'>Product category</td>
+                <td className='hidden md:table-cell'>Product quantity</td>
                 <td>Edit/Delete</td>
               </tr>
           </thead>
@@ -47,11 +47,11 @@ const Products = () => {
             {products.map((product) => (
               <tr key={product._id}>
                 <td>{product.title}</td>
-                <td>{product.brand}</td>
-                <td>{product.price}</td>
-                <td>{product.sizes ? product.sizes : "-"}</td>
-                <td>{product.category}</td>
-                <td>{product.quantity}</td>
+                <td className='hidden md:table-cell'>{product.brand}</td>
+                <td className='hidden md:table-cell'>{product.price}</td>
+                <td className='hidden md:table-cell'>{product.sizes ? product.sizes : "-"}</td>
+                <td className='hidden md:table-cell'>{product.category}</td>
+                <td className='hidden md:table-cell'>{product.quantity}</td>
                 <td>  
                   <Link className='flex items-center gap-1' 
                   href={`/products/edit/${product._id}`}

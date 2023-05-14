@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '@/components/Layout';
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 import { BsPencilSquare, BsTrash3Fill } from 'react-icons/bs';
 
@@ -8,17 +9,21 @@ import axios from 'axios';
 import PageSpinner from '@/components/PageSpinner';
 
 const Products = () => {
-
+  const {data: session } = useSession();
   const [products, setProducts] =useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
+    if (session) {
     axios.get('/api/products').then(response => {
       setProducts(response.data);
-      setIsLoading(false);
+      
     })
-    
+    } else {
+      return;
+    }
+    setIsLoading(false);
 }, [])
 
   return (

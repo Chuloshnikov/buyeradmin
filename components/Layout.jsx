@@ -4,7 +4,9 @@ import { useSession, signIn, signOut } from "next-auth/react";
 
 
 
+
 const Layout = ({ children }) => {
+    const [showNav, setShowNav] = useState(false);
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
     const {data: session } = useSession();
@@ -57,7 +59,8 @@ const Layout = ({ children }) => {
 
         return (
             <div className='bg-orange-400 min-h-screen flex'>
-              <Navbar/>
+                
+                <Navbar showNav={showNav} setShowNav={setShowNav}/>
                 <div className='bg-white flex-grow p-4'>
                 {children}
                 </div>

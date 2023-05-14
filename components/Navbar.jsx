@@ -6,8 +6,9 @@ import { signOut } from "next-auth/react";
 
 import logo from '../public/images/logo.png';
 import { AiOutlineHome, AiOutlineInbox, AiOutlineUnorderedList, AiOutlineSetting, AiOutlineLogout } from "react-icons/ai";
+import { ImArrowRight, ImArrowLeft} from "react-icons/im"
 
-const Navbar = () => {
+const Navbar = ({ showNav, setShowNav }) => {
 
   const inactiveLink = "flex items-center gap-1 p-1 pr-4";
   const activeLink = inactiveLink+" bg-white text-orange-600 rounded-l-lg pr-4";
@@ -17,7 +18,7 @@ const Navbar = () => {
   
   
   return (
-    <aside className='pt-4 pl-4 text-white'>
+    <aside className={showNav ? 'pt-4 pl-4 text-white sticky' : 'offSpan ' + 'pt-4 pl-4 text-white sticky'}>
       <Link 
       href={"/"}
       className='flex flex-col items-center pr-4'>
@@ -36,35 +37,42 @@ const Navbar = () => {
               className={pathname === '/' ? activeLink : inactiveLink}
               >
                 <AiOutlineHome/>
-                Dashboard
+                <span>Dashboard</span>
           </Link>
           <Link 
             href={'/products'}
             className={pathname.includes('/products') ? activeLink : inactiveLink}
             >
                 <AiOutlineInbox/>
-                Products
+                <span>Products</span>
             </Link>
             <Link 
             href={'/orders'}
             className={pathname.includes('/orders') ? activeLink : inactiveLink}
             >
                 <AiOutlineUnorderedList/>
-                Orders
+                <span>Orders</span>
             </Link>
             <Link 
             href={'/settings'}
             className={pathname.includes('/settings') ? activeLink : inactiveLink}
             >
                 <AiOutlineSetting/>
-                Settings
+                <span>Settings</span>
             </Link>
             <button 
-            onClick={() => signOut()}
             className={inactiveLink}
+            onClick={() => signOut()}
+            
             >
                 <AiOutlineLogout/>
-                Logout
+                <span>Logout</span>
+            </button>
+            <button 
+                onClick={() => setShowNav(!showNav)}
+                className={inactiveLink}>
+                    {showNav ? <ImArrowLeft/> : <ImArrowRight/>}
+                    <span>Close menu</span>
             </button>
         </nav>
     </aside>

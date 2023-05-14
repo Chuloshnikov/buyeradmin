@@ -51,3 +51,7 @@ table.basic a{
     @apply bg-gray-500 text-white;
 }
 
+.offSpan span {
+display: none;
+}
+

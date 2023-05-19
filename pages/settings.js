@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react'
 import Layout from '@/components/Layout';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useSession } from "next-auth/react";
+import { useSession, getSession } from "next-auth/react";
 
 import { BsPencilSquare, BsTrash3Fill } from 'react-icons/bs';
 
 import axios from 'axios';
 import PageSpinner from '@/components/PageSpinner';
 
-const Settings = () => {
+export default function Settings() {
   const {data: session } = useSession();
   const [banners, setBanners] =useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -71,4 +71,19 @@ const Settings = () => {
   )
 }
 
-export default Settings;
+export async function getServerSideProps({ req }) {
+  const session = await getSession({ req });
+
+  if(!session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
+
+  return {
+    props: { session }
+  } 
+}

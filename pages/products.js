@@ -17,8 +17,8 @@ export default function Products() {
     setIsLoading(true);
     axios.get('/api/products').then(response => {
       setProducts(response.data);
+      setIsLoading(false);
     });
-    setIsLoading(false);
 }, [])
 
   return (

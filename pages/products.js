@@ -1,28 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '@/components/Layout';
 import Link from "next/link";
-import { useSession } from "next-auth/react";
+import { useSession, getSession } from "next-auth/react";
 
 import { BsPencilSquare, BsTrash3Fill } from 'react-icons/bs';
 
 import axios from 'axios';
 import PageSpinner from '@/components/PageSpinner';
 
-const Products = () => {
+export default function Products() {
   const {data: session } = useSession();
   const [products, setProducts] =useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
-    if (session) {
     axios.get('/api/products').then(response => {
       setProducts(response.data);
-      
-    })
-    } else {
-      return;
-    }
+    });
     setIsLoading(false);
 }, [])
 
@@ -81,4 +76,19 @@ const Products = () => {
   )
 }
 
-export default Products;
+export async function getServerSideProps({ req }) {
+  const session = await getSession({ req });
+
+  if(!session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
+  }
+
+  return {
+    props: { session }
+  } 
+}

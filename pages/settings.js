@@ -16,14 +16,10 @@ export default function Settings() {
 
   useEffect(() => {
     setIsLoading(true);
-    if (session) {
     axios.get('/api/banner').then(response => {
       setBanners(response.data);
-    })
-     } else {
-      return;
-    }
       setIsLoading(false);
+    });     
   }, [])
 
 

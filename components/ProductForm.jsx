@@ -74,7 +74,7 @@ const ProductForm = ({
         <form
         onSubmit={saveProduct}
         >
-        <div className='flex gap-4'>
+        <div className='flex xs:flex-col mdl:flex-row gap-4'>
                 <div className='flex flex-col gap-1'>
                     <label>Title:</label>
                     <input 

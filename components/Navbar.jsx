@@ -18,7 +18,7 @@ const Navbar = ({ showNav, setShowNav }) => {
   
   
   return (
-    <aside className={showNav ? 'pt-4 pl-4 text-white sticky' : 'offSpan ' + 'pt-4 pl-2 text-white sticky'}>
+    <aside className={showNav ? 'pt-4 pl-4 text-white sticky duration-300' : 'offSpan ' + 'pt-4 pl-2 text-white sticky duration-300'}>
       <Link 
       href={"/"}
       className='flex flex-col items-center pr-2 lg:pr-4'>

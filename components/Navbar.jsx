@@ -5,7 +5,14 @@ import { useRouter } from 'next/router';
 import { signOut } from "next-auth/react";
 
 import logo from '../public/images/logo.png';
-import { AiOutlineHome, AiOutlineInbox, AiOutlineUnorderedList, AiOutlineSetting, AiOutlineLogout } from "react-icons/ai";
+import { 
+  AiOutlineHome, 
+  AiOutlineInbox, 
+  AiOutlineUnorderedList, 
+  AiOutlineSetting, 
+  AiOutlineLogout, 
+  } from "react-icons/ai";
+  import { FiUsers } from "react-icons/fi";
 import { ImArrowRight, ImArrowLeft} from "react-icons/im"
 
 const Navbar = ({ showNav, setShowNav }) => {
@@ -52,6 +59,13 @@ const Navbar = ({ showNav, setShowNav }) => {
             >
                 <AiOutlineUnorderedList/>
                 <span>Orders</span>
+            </Link>
+            <Link 
+            href={'/users'}
+            className={pathname.includes('/users') ? activeLink : inactiveLink}
+            >
+                <FiUsers/>
+                <span>Users</span>
             </Link>
             <Link 
             href={'/settings'}

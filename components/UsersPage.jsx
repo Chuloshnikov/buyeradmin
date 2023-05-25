@@ -1,17 +1,21 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
+import PageSpinner from '@/components/PageSpinner';
 
 const UsersPage = () => {
     const [users, setUsers] = useState([]); 
     const [currentPage, setCurrentPage] = useState(1);
+    const [isLoading, setIsLoading] = useState(false);
   const [selectedUsers, setSelectedUsers] = useState([]); // Список обраних користувачів для відправки розсилки
   const [emailContent, setEmailContent] = useState(''); // Зміст розсилки
  
   const usersPerPage = 10;
 
-    useEffect(() => {
-        axios.get('/api/users').then(response => setUsers(response.data));
-    });
+  useEffect(() => {
+    setIsLoading(true);
+    axios.get('/api/users').then(response => setUsers(response.data));
+    setIsLoading(false);
+  });
     
 
     const handleUserSelect = (userId) => {
@@ -88,6 +92,7 @@ const UsersPage = () => {
                     ))}
                   </tbody>
             </table>
+            {isLoading && <PageSpinner/>}
           <div>
             <button 
             className='bg-orange-400 text-white py-1 px-2 inline-flex rounded-sm text-sm hover:scale-105 duration-300 mt-4'

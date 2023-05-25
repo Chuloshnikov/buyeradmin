@@ -2,10 +2,11 @@ import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 
 const UsersPage = () => {
-    const [users, setUsers] = useState([]); // Список користувачів (емейлів) з бази даних
+    const [users, setUsers] = useState([]); 
+    const [currentPage, setCurrentPage] = useState(1);
   const [selectedUsers, setSelectedUsers] = useState([]); // Список обраних користувачів для відправки розсилки
   const [emailContent, setEmailContent] = useState(''); // Зміст розсилки
-  const [currentPage, setCurrentPage] = useState(1);
+ 
   const usersPerPage = 10;
 
     useEffect(() => {

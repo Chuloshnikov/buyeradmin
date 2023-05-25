@@ -46,31 +46,54 @@ const UsersPage = () => {
 
     return (
         <div>
-          <h2>Email List</h2>
+          <h2 className='text-gray-800 text-lg font-bold mb-2'>Users</h2>
+          <h2 className='font-semibold mb-2'>Email List:</h2>
           <div>
-            <input
+            <textarea
+            className='xs:h-[250px] xs:w-[300px] mdl:h-[400px] mdl:w-[700px] lgl:h-[500px] lgl:w-[1000px]'
               type="text"
               value={emailContent}
               onChange={(e) => setEmailContent(e.target.value)}
-              placeholder="Enter email content"
+              placeholder="Enter email content..."
             />
           </div>
           <div>
-            {currentUsers.map((user) => (
-              <div key={user.id}>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={selectedUsers.includes(user.id)}
-                    onChange={() => handleUserSelect(user.id)}
-                  />
-                  {user.email}
-                </label>
-              </div>
-            ))}
-          </div>
+            <h2 className='font-semibold mb-2'>Customers:</h2>
+              <table className='basic'>
+                  <thead>
+                      <tr >
+                        <td>select:</td>
+                        <td>name:</td>
+                        <td>email:</td>
+                      </tr>
+                  </thead>
+                  <tbody>
+                  {currentUsers.map((user) => (
+                    <tr className="xs:text-xs mdl:text-base"key={user.id}>
+                        <td>
+                          <input
+                          type="checkbox"
+                          checked={selectedUsers.includes(user.id)}
+                          onChange={() => handleUserSelect(user.id)}
+                          />
+                        </td>
+                        <td>
+                          <span>{user.name}</span>
+                        </td>
+                        <td>
+                          <span>{user.email}</span>
+                        </td>
+                    </tr>
+                    ))}
+                  </tbody>
+            </table>
           <div>
-            <button onClick={sendEmail}>Send Email</button>
+            <button 
+            className='bg-orange-400 text-white py-1 px-2 inline-flex rounded-sm text-sm hover:scale-105 duration-300 mt-4'
+            onClick={sendEmail}
+            >
+              Send Email
+            </button>
           </div>
           <div>
             {/* Пагінація */}
@@ -83,6 +106,7 @@ const UsersPage = () => {
               />
             )}
           </div>
+        </div>
         </div>
       );
     };

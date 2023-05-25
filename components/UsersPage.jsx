@@ -1,15 +1,18 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import PageSpinner from '@/components/PageSpinner';
+import UsersPagination from './UsersPagination';
 
 const UsersPage = () => {
     const [users, setUsers] = useState([]); 
     const [currentPage, setCurrentPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
+
+
   const [selectedUsers, setSelectedUsers] = useState([]); // Список обраних користувачів для відправки розсилки
   const [emailContent, setEmailContent] = useState(''); // Зміст розсилки
  
-  const usersPerPage = 10;
+  const usersPerPage = 5;
 
   useEffect(() => {
     setIsLoading(true);
@@ -104,7 +107,7 @@ const UsersPage = () => {
           <div>
             {/* Пагінація */}
             {users.length > usersPerPage && (
-              <Pagination
+              <UsersPagination
                 usersPerPage={usersPerPage}
                 totalUsers={users.length}
                 paginate={paginate}
@@ -117,28 +120,5 @@ const UsersPage = () => {
       );
     };
     
-    // Компонент пагінації
-    const Pagination = ({ usersPerPage, totalUsers, paginate, currentPage }) => {
-      const pageNumbers = [];
-    
-      for (let i = 1; i <= Math.ceil(totalUsers / usersPerPage); i++) {
-        pageNumbers.push(i);
-      }
-    
-      return (
-        <ul>
-          {pageNumbers.map((number) => (
-            <li key={number}>
-              <button
-                onClick={() => paginate(number)}
-                className={currentPage === number ? 'active' : ''}
-              >
-                {number}
-              </button>
-            </li>
-          ))}
-        </ul>
-      );
-}
 
 export default UsersPage;

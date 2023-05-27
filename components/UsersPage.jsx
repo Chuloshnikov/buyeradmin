@@ -76,7 +76,8 @@ const UsersPage = () => {
           <h2 className='font-semibold mb-2'>Email List:</h2>
           <div>
             <textarea
-            className='xs:h-[250px] xs:w-[300px] mdl:h-[400px] mdl:w-[700px] lgl:h-[500px] lgl:w-[1000px]'
+            className='xs:h-[250px] xs:w-[300px] mdl:h-[400px] mdl:w-[700px] lgl:h-[500px] lgl:w-[1000px]
+            text-gray-800 bg-white border-bg-gray-800  border-2 dark:bg-gray-800 focus:ring-0 focus:border-orange-400 dark:text-white dark:placeholder-gray-400'
               type="text"
               value={emailContent}
               onChange={(e) => setEmailContent(e.target.value)}

@@ -78,6 +78,7 @@ const ProductForm = ({
                 <div className='flex flex-col gap-1'>
                     <label>Title:</label>
                     <input 
+                    className='focus:border-orange-400 focus:border-1 focus:ring-0'
                     onChange={e => setTitle(e.target.value)}
                     value={title} 
                     type="text" 
@@ -86,6 +87,7 @@ const ProductForm = ({
                     />
                     <label>Brand:</label>
                     <input
+                    className='focus:border-orange-400 focus:border-1 focus:ring-0'
                     onChange={e => setBrand(e.target.value)}
                     value={brand}
                      type="text" 
@@ -94,6 +96,7 @@ const ProductForm = ({
                      />
                     <label>Description:</label>
                     <textarea
+                    className='focus:border-orange-400 focus:border-1 focus:ring-0'
                     onChange={e => setDescription(e.target.value)}
                     value={description}
                      placeholder='product description'
@@ -103,6 +106,7 @@ const ProductForm = ({
                 <div className='flex flex-col gap-1'>
                     <label>Price (in UAH)</label>
                     <input
+                    className='focus:border-orange-400 focus:border-1 focus:ring-0'
                     onChange={e => setPrice(e.target.value)}
                     value={price}
                      type="number" 
@@ -111,6 +115,7 @@ const ProductForm = ({
                      />
                     <label>Old price (in UAH)</label>
                     <input
+                    className='focus:border-orange-400 focus:border-1 focus:ring-0'
                     onChange={e => setOldPrice(e.target.value)}
                     value={oldPrice}
                      type="number" 
@@ -118,6 +123,7 @@ const ProductForm = ({
                      />
                     <label>Sizes:</label>
                     <input
+                    className='focus:border-orange-400 focus:border-1 focus:ring-0'
                     onChange={e => setSizes(e.target.value)}
                     value={sizes}
                      type="text" 
@@ -128,6 +134,7 @@ const ProductForm = ({
                     <label>Category</label>
 
                     <input 
+                    className='focus:border-orange-400 focus:border-1 focus:ring-0'
                     onChange={e => setCategory(e.target.value)}
                     value={category}
                     type="text" 
@@ -135,6 +142,7 @@ const ProductForm = ({
                     />
                     <label>Quantity</label>
                     <input
+                    className='focus:border-orange-400 focus:border-1 focus:ring-0'
                     onChange={e => setQuantity(e.target.value)}
                     value={quantity}
                      type="number" 

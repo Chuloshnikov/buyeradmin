@@ -98,6 +98,11 @@ const UsersPage = () => {
                     <tr className="xs:text-xs mdl:text-base"key={user._id}>
                         <td>
                         <input
+                        id="orange-checkbox"
+                        className='w-4 h-4 text-orange-500 bg-gray-100
+                         border-gray-300 rounded focus:ring-orange-500 dark:focus:ring-orange-600
+                          dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700
+                           dark:border-gray-600'
                           type="checkbox"
                           checked={selectedUsers.some((selectedUser) => selectedUser._id === user._id)}
                           onClick={() => handleUserSelect(user._id)}

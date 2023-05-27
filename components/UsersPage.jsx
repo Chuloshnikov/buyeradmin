@@ -39,22 +39,19 @@ const UsersPage = () => {
   };
   
 
-      // Відправка розсилки
   const sendEmail = () => {
-    // Виконайте логіку відправки розсилки з вибраним списком користувачів та змістом листа
     const emailData = {
       selectedUsers,
       emailContent
     };
     axios.post('/api/send-email', emailData)
       .then(response => {
-        console.log('Відправлено:', selectedUsers, emailContent);
-        // Скинути форму після відправки
+        console.log('Email sent:', selectedUsers, emailContent);
         setSelectedUsers([]);
         setEmailContent('');
       })
       .catch(error => {
-        console.error('Помилка під час відправки розсилки:', error);
+        console.error('Error sending email:', error);
       });
   };
 

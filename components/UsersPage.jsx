@@ -7,39 +7,57 @@ const UsersPage = () => {
     const [users, setUsers] = useState([]); 
     const [currentPage, setCurrentPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
+    console.log(users);
+    
 
 
   const [selectedUsers, setSelectedUsers] = useState([]); // Список обраних користувачів для відправки розсилки
   const [emailContent, setEmailContent] = useState(''); // Зміст розсилки
  
-  const usersPerPage = 5;
-
+  const usersPerPage = 10;
+  console.log(selectedUsers);
   useEffect(() => {
     setIsLoading(true);
-    axios.get('/api/users').then(response => setUsers(response.data));
-    setIsLoading(false);
-  });
+    axios.get('/api/users').then(response => {
+      setUsers(response.data)
+      setIsLoading(false);
+    });
     
-
-    const handleUserSelect = (userId) => {
-        const index = selectedUsers.indexOf(userId);
-        if (index > -1) {
-          // Користувач уже вибраний, тому видалити його зі списку
-          setSelectedUsers(selectedUsers.filter((id) => id !== userId));
-        } else {
-          // Користувач ще не вибраний, додати його до списку
-          setSelectedUsers([...selectedUsers, userId]);
-        }
-      };
-
-        // Відправка розсилки
-    const sendEmail = () => {
-    // Виконайте логіку відправки розсилки з вибраним списком користувачів та змістом листа
-    console.log('Відправлено:', selectedUsers, emailContent);
-    // Скинути форму після відправки
-    setSelectedUsers([]);
-    setEmailContent('');
+  }, []);
+    
+ 
+  const handleUserSelect = (userId) => {
+    const isSelected = selectedUsers.some(user => user._id === userId);
+    if (isSelected) {
+      // Користувач уже вибраний, тому видалити його зі списку
+      setSelectedUsers(selectedUsers.filter(user => user._id !== userId));
+    } else {
+      // Користувач ще не вибраний, додати його до списку
+      const user = users.find(user => user._id === userId);
+      setSelectedUsers([...selectedUsers, user]);
+    }
   };
+  
+
+      // Відправка розсилки
+  const sendEmail = () => {
+    // Виконайте логіку відправки розсилки з вибраним списком користувачів та змістом листа
+    const emailData = {
+      selectedUsers,
+      emailContent
+    };
+    axios.post('/api/send-email', emailData)
+      .then(response => {
+        console.log('Відправлено:', selectedUsers, emailContent);
+        // Скинути форму після відправки
+        setSelectedUsers([]);
+        setEmailContent('');
+      })
+      .catch(error => {
+        console.error('Помилка під час відправки розсилки:', error);
+      });
+  };
+
     
 
     // Обчислення індексу першого та останнього користувача для пагінації
@@ -77,13 +95,14 @@ const UsersPage = () => {
                   </thead>
                   <tbody>
                   {currentUsers.map((user) => (
-                    <tr className="xs:text-xs mdl:text-base"key={user.id}>
+                    <tr className="xs:text-xs mdl:text-base"key={user._id}>
                         <td>
-                          <input
+                        <input
                           type="checkbox"
-                          checked={selectedUsers.includes(user.id)}
-                          onChange={() => handleUserSelect(user.id)}
-                          />
+                          checked={selectedUsers.some((selectedUser) => selectedUser._id === user._id)}
+                          onClick={() => handleUserSelect(user._id)}
+                          readOnly
+                        />
                         </td>
                         <td>
                           <span>{user.name}</span>

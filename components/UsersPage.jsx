@@ -7,14 +7,11 @@ const UsersPage = () => {
     const [users, setUsers] = useState([]); 
     const [currentPage, setCurrentPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
-    console.log(users);
-    
-
-
-  const [selectedUsers, setSelectedUsers] = useState([]); // Список обраних користувачів для відправки розсилки
-  const [emailContent, setEmailContent] = useState(''); // Зміст розсилки
+    const [selectedUsers, setSelectedUsers] = useState([]); // array of selected users
+    const [emailContent, setEmailContent] = useState(''); // message body
  
   const usersPerPage = 10;
+  console.log(users);
   console.log(selectedUsers);
   useEffect(() => {
     setIsLoading(true);

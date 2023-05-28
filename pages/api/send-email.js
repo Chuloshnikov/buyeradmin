@@ -7,35 +7,25 @@ export default async function handler(req, res) {
 
   const { selectedUsers, emailContent } = req.body;
 
-  // Конфігурація транспорту для відправки електронних листів
+  // Mailer config
   const transporter = nodemailer.createTransport({
-    // Налаштування вашого провайдера електронної пошти (SMTP, Gmail і т.д.)
-    // Перегляньте документацію nodemailer для детальнішої настройки
-    // Нижче приведений приклад для Gmail
     service: 'Gmail',
     auth: {
-      user: 'your-email@gmail.com', // Ваша адреса електронної пошти
-      pass: 'your-password' // Ваш пароль електронної пошти
+      user: process.env.MAILER_SENDER_EMAIL, 
+      pass: process.env.MAILER_SENDER_PASSWORD 
     }
   });
 
   // Отримання списку адрес електронної пошти для відправки
-  const recipients = selectedUsers.map(userId => {
-    // Ваш логіка отримання адрес електронної пошти користувачів за їхніми ідентифікаторами
-    // Наприклад, шляхом звернення до бази даних або іншого джерела
-    // Замість цього місця вставте власний код
-
-    // Припустимо, що ми отримали адресу користувача по його ідентифікатору
-    const email = 'example@gmail.com'; // Адреса електронної пошти користувача
-    return email;
-  });
+  const recipients = selectedUsers.map(user => user.email);
+  const recipientsNames = selectedUsers.map(user => user.name);
 
   // Налаштування електронного листа
   const mailOptions = {
-    from: 'your-email@gmail.com', // Ваша адреса електронної пошти
+    from: 'anastasia.zagorodnyaya@gmail.com', // Ваша адреса електронної пошти
     to: recipients.join(','), // Список адрес електронної пошти через кому
     subject: 'Subject of the Email',
-    text: emailContent // Вміст електронного листа
+    text: `Добрий день, ${recipientsNames}! + \n${emailContent} \n З повагою, Ваш Байер Анастасія.` // Вміст електронного листа
   };
 
   try {

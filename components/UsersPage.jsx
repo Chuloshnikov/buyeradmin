@@ -2,11 +2,13 @@ import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import PageSpinner from '@/components/PageSpinner';
 import UsersPagination from './UsersPagination';
+import  Spinner from '../components/Spinner';
 
 const UsersPage = () => {
     const [users, setUsers] = useState([]); 
     const [currentPage, setCurrentPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
+    const [emailSendingLoading, setEmailSendingLoading] = useState(false);
     const [selectedUsers, setSelectedUsers] = useState([]); // array of selected users
     const [emailContent, setEmailContent] = useState(''); // message body
  
@@ -41,15 +43,18 @@ const UsersPage = () => {
       selectedUsers,
       emailContent
     };
+    setEmailSendingLoading(true);
     axios.post('/api/send-email', emailData)
       .then(response => {
         console.log('Email sent:', selectedUsers, emailContent);
         setSelectedUsers([]);
         setEmailContent('');
+        setEmailSendingLoading(false);
       })
       .catch(error => {
         console.error('Error sending email:', error);
       });
+      
   };
 
     
@@ -116,12 +121,16 @@ const UsersPage = () => {
             </table>
             {isLoading && <PageSpinner/>}
           <div>
-            <button 
-            className='bg-orange-400 text-white py-1 px-2 inline-flex rounded-sm text-sm hover:scale-105 duration-300 mt-4'
-            onClick={sendEmail}
-            >
-              Send Email
-            </button>
+            {emailSendingLoading ? (<div className='mt-4'><Spinner size={5}/></div>) : (
+                <button 
+                  className='bg-orange-400 text-white py-1 px-2 inline-flex 
+                  rounded-sm text-sm hover:scale-105 duration-300 mt-4'
+                  onClick={sendEmail}
+                >
+                  Send Email
+                </button>
+            )}
+            
           </div>
           <div>
             {/* Пагінація */}

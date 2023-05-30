@@ -10,6 +10,7 @@ const UsersPage = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [emailSendingLoading, setEmailSendingLoading] = useState(false);
     const [selectedUsers, setSelectedUsers] = useState([]); // array of selected users
+    const [isAllSelected, setIsAllSelected] = useState(false);
     const [emailContent, setEmailContent] = useState(''); // message body
  
   const usersPerPage = 10;
@@ -69,6 +70,16 @@ const UsersPage = () => {
       setCurrentPage(pageNumber);
     };
 
+    const handleSelectAll = () => {
+      if (isAllSelected) {
+        setSelectedUsers([]);
+        setIsAllSelected(false);
+      } else {
+        setSelectedUsers(users);
+        setIsAllSelected(true);
+      }
+    };
+
     return (
         <div>
           <h2 className='text-gray-800 text-lg font-bold mb-2'>Users</h2>
@@ -97,17 +108,16 @@ const UsersPage = () => {
                   {currentUsers.map((user) => (
                     <tr className="xs:text-xs mdl:text-base"key={user._id}>
                         <td>
-                        <input
-                        id="orange-checkbox"
-                        className='w-4 h-4 text-orange-500 bg-gray-100
-                         border-gray-300 rounded focus:ring-orange-500 dark:focus:ring-orange-600
-                          dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700
-                           dark:border-gray-600'
-                          type="checkbox"
-                          checked={selectedUsers.some((selectedUser) => selectedUser._id === user._id)}
-                          onClick={() => handleUserSelect(user._id)}
-                          readOnly
-                        />
+                          <input
+                            id="orange-checkbox"
+                            className='w-4 h-4 text-orange-500 bg-gray-100 border-gray-300 
+                            rounded focus:ring-orange-500 dark:focus:ring-orange-600 
+                          dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
+                            type="checkbox"
+                            checked={isAllSelected || selectedUsers.some((selectedUser) => selectedUser._id === user._id)}
+                            onClick={() => handleUserSelect(user._id)}
+                            readOnly
+                          />
                         </td>
                         <td>
                           <span>{user.name}</span>
@@ -122,13 +132,22 @@ const UsersPage = () => {
             {isLoading && <PageSpinner/>}
           <div>
             {emailSendingLoading ? (<div className='mt-4'><Spinner size={5}/></div>) : (
+              <div className='flex gap-2'>
                 <button 
-                  className='bg-orange-400 text-white py-1 px-2 inline-flex 
-                  rounded-sm text-sm hover:scale-105 duration-300 mt-4'
-                  onClick={sendEmail}
-                >
-                  Send Email
+                    className='bg-orange-400 text-white py-1 px-2 inline-flex 
+                    rounded-sm text-sm hover:scale-105 duration-300 mt-4'
+                    onClick={sendEmail}
+                  >
+                    Send Email
+                  </button>
+                  <button
+                    className='bg-orange-400 text-white py-1 px-2 rounded-sm inline-flex
+                    text-sm hover:scale-105 duration-300 mt-4'
+                    onClick={handleSelectAll}
+                  >
+                  Select All
                 </button>
+              </div>
             )}
             
           </div>

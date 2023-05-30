@@ -22,7 +22,7 @@ export default async function handler(req, res) {
 
   // Налаштування електронного листа
   const mailOptions = {
-    from: 'anastasia.zagorodnyaya@gmail.com', // Ваша адреса електронної пошти
+    from: process.env.MAILER_SENDER_EMAIL, // Ваша адреса електронної пошти
     to: recipients.join(','), // Список адрес електронної пошти через кому
     subject: 'Subject of the Email',
     text: `Добрий день, ${recipientsNames}! + \n${emailContent} \n З повагою, Ваш Байер Анастасія.` // Вміст електронного листа

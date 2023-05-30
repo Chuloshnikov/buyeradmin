@@ -3,6 +3,10 @@ import axios from 'axios';
 import PageSpinner from '@/components/PageSpinner';
 import UsersPagination from './UsersPagination';
 import  Spinner from '../components/Spinner';
+import toast, { Toaster } from 'react-hot-toast';
+
+
+const notify = () => toast('Here is your toast.');
 
 const UsersPage = () => {
     const [users, setUsers] = useState([]); 
@@ -51,6 +55,7 @@ const UsersPage = () => {
         setSelectedUsers([]);
         setEmailContent('');
         setEmailSendingLoading(false);
+        toast.success(`відправлено ${selectedUsers.length} листів`);
       })
       .catch(error => {
         console.error('Error sending email:', error);
@@ -163,6 +168,17 @@ const UsersPage = () => {
             )}
           </div>
         </div>
+        <Toaster
+          reverseOrder={false}
+          position="top-center"
+          toastOptions={{
+            style:{
+              borderRadius: "8px",
+              background: "#333",
+              color: "#fff",
+            }
+          }}
+        />
         </div>
       );
     };

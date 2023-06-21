@@ -51,7 +51,6 @@ if (goToSettings) {
         <textarea 
         onChange={e => setDescription(e.target.value)}
         value={description}
-         placeholder='product description'
         type="text" 
         placeholder='banner description...'
         required

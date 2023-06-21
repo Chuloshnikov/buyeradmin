@@ -31,7 +31,7 @@ const DeleteBanner = () => {
     return (
         <Layout>
                 <div className='flex flex-col items-center gap-4'>
-                    <h1 className='text-center font-semibold text-lg'>Do you really want to delete&nbsp;"{bannerInfo?.title}"?</h1>
+                    <h1 className='text-center font-semibold text-lg'>Do you really want to delete&nbsp;&quot;{bannerInfo?.title}&quot;?</h1>
                     <Image src={bannerInfo?.imageUrl} width={350} height={250} className="shadow-containerShadow"/>
                         <div className='flex gap-2 justify-center mt-2'>
                             <button 

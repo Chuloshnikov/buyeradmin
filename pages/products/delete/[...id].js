@@ -28,7 +28,7 @@ const DeleteProductPage = () => {
 
   return (
     <Layout>
-        <h1 className='text-center font-semibold text-lg'>Do you really want to delete&nbsp;"{productInfo?.title}"? </h1>
+        <h1 className='text-center font-semibold text-lg'>Do you really want to delete&nbsp;&quot;{productInfo?.title}&quot;? </h1>
         <div className='flex gap-2 justify-center mt-2'>
             <button 
             className='btn-red'

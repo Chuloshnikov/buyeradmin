@@ -1,10 +1,7 @@
 import React from 'react';
 
-type Amount = {
-    amount: Number;
-}
 
-const FormatePrice = ({amount}: Amount) => {
+const FormatePrice = ({amount}) => {
     const formatedAmount = new Number(amount).toLocaleString("uk-UA", {
         style: "currency",
         currency:"UAH",

@@ -7,6 +7,7 @@ import { BsPencilSquare, BsTrash3Fill } from 'react-icons/bs';
 
 import axios from 'axios';
 import PageSpinner from '@/components/PageSpinner';
+import FormatePrice from '@/components/FormatePrice';
 
 export default function Products() {
   const {data: session } = useSession();
@@ -48,7 +49,7 @@ export default function Products() {
               <tr key={product._id}>
                 <td>{product.title}</td>
                 <td className='hidden md:table-cell'>{product.brand}</td>
-                <td className='hidden md:table-cell'>{product.price}</td>
+                <td className='hidden md:table-cell'><FormatePrice amount={product.price}/></td>
                 <td className='hidden md:table-cell'>{product.sizes ? product.sizes : "-"}</td>
                 <td className='hidden md:table-cell'>{product.category}</td>
                 <td className='hidden md:table-cell'>{product.quantity}</td>

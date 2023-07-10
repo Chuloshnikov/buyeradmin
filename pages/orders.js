@@ -50,13 +50,13 @@ export default function Orders() {
                 </td>
                 <td>  
                   <Link className='flex items-center gap-1' 
-                  href={`/products/edit/${order._id}`}
+                  href={`/orders/edit/${order._id}`}
                   >
                     <BsPencilSquare/>
                       Edit
                   </Link>
                   <Link className='flex items-center gap-1'
-                  href={`/products/delete/${order._id}`}
+                  href={`/orders/delete/${order._id}`}
                   >
                     <BsTrash3Fill/>
                       Delete

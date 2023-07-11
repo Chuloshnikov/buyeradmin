@@ -29,4 +29,4 @@ const UsersPagination = ({ usersPerPage, totalUsers, paginate, currentPage }) =>
       );
 }
 
-export default UsersPagination
+export default UsersPagination;

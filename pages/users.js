@@ -2,7 +2,7 @@ import Layout from '@/components/Layout';
 import UsersPage from '@/components/UsersPage';
 
 
-const users = () => {
+const Users = () => {
   return (
     <Layout>
         <UsersPage/>
@@ -10,4 +10,4 @@ const users = () => {
   )
 }
 
-export default users;
+export default Users;

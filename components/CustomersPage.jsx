@@ -8,54 +8,78 @@ import toast, { Toaster } from 'react-hot-toast';
 
 const notify = () => toast('Here is your toast.');
 
-const UsersPage = () => {
-    const [users, setUsers] = useState([]); 
+const CustomersPage = () => {
+    const [customers, setCustomers] = useState([]); 
     const [currentPage, setCurrentPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
     const [emailSendingLoading, setEmailSendingLoading] = useState(false);
-    const [selectedUsers, setSelectedUsers] = useState([]); // array of selected users
+    const [selectedCustomers, setSelectedCustomers] = useState([]); // array of selected customers
     const [isAllSelected, setIsAllSelected] = useState(false);
     const [emailContent, setEmailContent] = useState(''); // message body
  
-  const usersPerPage = 10;
-  console.log(users);
-  console.log(selectedUsers);
+  const customersPerPage = 10;
+  console.log(customers);
+  console.log(selectedCustomers);
+
   useEffect(() => {
     setIsLoading(true);
-    axios.get('/api/users').then(response => {
-      setUsers(response.data)
-      setIsLoading(false);
-    });
-    
+    axios.get('/api/users')
+      .then(responseUsers => {
+        const users = responseUsers.data;
+        axios.get('/api/orders')
+          .then(responseOrders => {
+            const orders = responseOrders.data;
+
+            // Порівняти email-адреси та знайти співпадіння
+            const matchedCustomers = users.filter(user =>
+                orders.some(order =>
+                  Array.isArray(order.userInfo) &&
+                  order.userInfo.some(info => info.email === user.email)
+                )
+              );
+
+            // Зберегти співпадаючих користувачів у стані `customers`
+            setCustomers(matchedCustomers);
+            setIsLoading(false);
+          })
+          .catch(errorOrders => {
+            // Обробка помилки запиту до orders
+            console.error(errorOrders);
+          });
+      })
+      .catch(errorUsers => {
+        // Обробка помилки запиту до users
+        console.error(errorUsers);
+      });
   }, []);
     
  
-  const handleUserSelect = (userId) => {
-    const isSelected = selectedUsers.some(user => user._id === userId);
+  const handleCustomerSelect = (customerId) => {
+    const isSelected = selectedCustomers.some(customer => customer._id === customerId);
     if (isSelected) {
       // Користувач уже вибраний, тому видалити його зі списку
-      setSelectedUsers(selectedUsers.filter(user => user._id !== userId));
+      setSelectedCustomers(selectedCustomers.filter(customer => customer._id !== customerId));
     } else {
       // Користувач ще не вибраний, додати його до списку
-      const user = users.find(user => user._id === userId);
-      setSelectedUsers([...selectedUsers, user]);
+      const customer = customers.find(customer => customer._id === customerId);
+      setSelectedCustomers([...selectedCustomers, customer]);
     }
   };
   
 
   const sendEmail = () => {
     const emailData = {
-      selectedUsers,
+      selectedCustomers,
       emailContent
     };
     setEmailSendingLoading(true);
     axios.post('/api/send-email', emailData)
       .then(response => {
-        console.log('Email sent:', selectedUsers, emailContent);
-        setSelectedUsers([]);
+        console.log('Email sent:', selectedCustomers, emailContent);
+        setSelectedCustomers([]);
         setEmailContent('');
         setEmailSendingLoading(false);
-        toast.success(`відправлено ${selectedUsers.length} листів`);
+        toast.success(`відправлено ${selectedCustomers.length} листів`);
       })
       .catch(error => {
         console.error('Error sending email:', error);
@@ -66,9 +90,9 @@ const UsersPage = () => {
     
 
     // Обчислення індексу першого та останнього користувача для пагінації
-    const indexOfLastUser = currentPage * usersPerPage;
-    const indexOfFirstUser = indexOfLastUser - usersPerPage;
-    const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+    const indexOfLastCustomer = currentPage * customersPerPage;
+    const indexOfFirstCustomer = indexOfLastCustomer - customersPerPage;
+    const currentCustomers = customers.slice(indexOfFirstCustomer, indexOfLastCustomer);
   
     // Зміна сторінки
     const paginate = (pageNumber) => {
@@ -77,17 +101,17 @@ const UsersPage = () => {
 
     const handleSelectAll = () => {
       if (isAllSelected) {
-        setSelectedUsers([]);
+        setSelectedCustomers([]);
         setIsAllSelected(false);
       } else {
-        setSelectedUsers(users);
+        setSelectedCustomers(customers);
         setIsAllSelected(true);
       }
     };
 
     return (
         <div>
-          <h2 className='text-gray-800 text-lg font-bold mb-2'>Users</h2>
+          <h2 className='text-gray-800 text-lg font-bold mb-2'>Customers</h2>
           <h2 className='font-semibold mb-2'>Email List:</h2>
           <div>
             <textarea
@@ -100,7 +124,7 @@ const UsersPage = () => {
             />
           </div>
           <div>
-            <h2 className='font-semibold mb-2'>Users:</h2>
+            <h2 className='font-semibold mb-2'>Customers:</h2>
               <table className='basic'>
                   <thead>
                       <tr >
@@ -110,8 +134,8 @@ const UsersPage = () => {
                       </tr>
                   </thead>
                   <tbody>
-                  {currentUsers.map((user) => (
-                    <tr className="xs:text-xs mdl:text-base"key={user._id}>
+                  {currentCustomers.map((customer) => (
+                    <tr className="xs:text-xs mdl:text-base"key={customer._id}>
                         <td>
                           <input
                             id="orange-checkbox"
@@ -119,16 +143,16 @@ const UsersPage = () => {
                             rounded focus:ring-orange-500 dark:focus:ring-orange-600 
                           dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
                             type="checkbox"
-                            checked={isAllSelected || selectedUsers.some((selectedUser) => selectedUser._id === user._id)}
-                            onClick={() => handleUserSelect(user._id)}
+                            checked={isAllSelected || selectedCustomers.some((selectedCustomer) => selectedCustomer._id === customer._id)}
+                            onClick={() => handleCustomerSelect(customers._id)}
                             readOnly
                           />
                         </td>
                         <td>
-                          <span>{user.name}</span>
+                          <span>{customer.name}</span>
                         </td>
                         <td>
-                          <span>{user.email}</span>
+                          <span>{customer.email}</span>
                         </td>
                     </tr>
                     ))}
@@ -158,10 +182,10 @@ const UsersPage = () => {
           </div>
           <div>
             {/* Пагінація */}
-            {users.length > usersPerPage && (
+            {customers.length > customersPerPage && (
               <UsersPagination
-                usersPerPage={usersPerPage}
-                totalUsers={users.length}
+                usersPerPage={customersPerPage}
+                totalUsers={customers.length}
                 paginate={paginate}
                 currentPage={currentPage}
               />
@@ -184,4 +208,4 @@ const UsersPage = () => {
     };
     
 
-export default UsersPage;
+export default CustomersPage;

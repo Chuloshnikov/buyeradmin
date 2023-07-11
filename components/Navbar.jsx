@@ -68,6 +68,13 @@ const Navbar = ({ showNav, setShowNav }) => {
                 <span>Users</span>
             </Link>
             <Link 
+            href={'/customers'}
+            className={pathname.includes('/customers') ? activeLink : inactiveLink}
+            >
+                <FiUsers/>
+                <span>Customers</span>
+            </Link>
+            <Link 
             href={'/settings'}
             className={pathname.includes('/settings') ? activeLink : inactiveLink}
             >

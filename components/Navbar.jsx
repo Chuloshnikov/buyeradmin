@@ -13,6 +13,7 @@ import {
   AiOutlineLogout, 
   } from "react-icons/ai";
   import { FiUsers } from "react-icons/fi";
+  import { FaUserTag } from "react-icons/fa";
 import { ImArrowRight, ImArrowLeft} from "react-icons/im"
 
 const Navbar = ({ showNav, setShowNav }) => {
@@ -71,7 +72,7 @@ const Navbar = ({ showNav, setShowNav }) => {
             href={'/customers'}
             className={pathname.includes('/customers') ? activeLink : inactiveLink}
             >
-                <FiUsers/>
+                <FaUserTag/>
                 <span>Customers</span>
             </Link>
             <Link 

@@ -49,7 +49,7 @@ const OrderPage = ({ id }) => {
                 <div>
                     {orderDetails?.userInfo.map(user => (
                         <div key={user.name}>
-                            {user.image ? (<Image src={user.image} width={200} height={200}/>) 
+                            {user.image ? (<Image src={user.image} width={200} height={200} alt="userImage"/>) 
                             : (
                                 <div className='bg bg-orange-400 text-white w-[200px] h-[200px] flex items-center justify-center'>
                                     <AiOutlineUser className='w-[180px] h-[180px]'/>

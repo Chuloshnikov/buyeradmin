@@ -33,6 +33,7 @@ export default async function handler(req, res) {
 
     if (method === 'PUT') {
         const {
+                _id,
                 orderId, 
                 productData, 
                 userInfo, 

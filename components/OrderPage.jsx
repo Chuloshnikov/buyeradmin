@@ -2,7 +2,6 @@ import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import Image from 'next/image';
 import {AiOutlineUser} from "react-icons/ai";
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import FormatePrice from './FormatePrice';
 import Spinner from './Spinner';
@@ -138,8 +137,7 @@ const OrderPage = ({ id }) => {
             )}
                  
         </div>
-    </div>
-    
+    </div>   
   )
 }
 

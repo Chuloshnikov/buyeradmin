@@ -4,6 +4,9 @@ import PageSpinner from '@/components/PageSpinner';
 import UsersPagination from './UsersPagination';
 import  Spinner from '../components/Spinner';
 import toast, { Toaster } from 'react-hot-toast';
+import Link from 'next/link';
+import { AiOutlineQuestionCircle } from "react-icons/ai";
+
 
 
 const notify = () => toast('Here is your toast.');
@@ -111,7 +114,7 @@ const CustomersPage = () => {
 
     return (
         <div>
-          <h2 className='text-gray-800 text-lg font-bold mb-2'>Users</h2>
+          <h2 className='text-gray-800 text-lg font-bold mb-2'>Customers</h2>
           <h2 className='font-semibold mb-2'>Email List:</h2>
           <div>
             <textarea
@@ -124,13 +127,14 @@ const CustomersPage = () => {
             />
           </div>
           <div>
-            <h2 className='font-semibold mb-2'>Users:</h2>
+            <h2 className='font-semibold mb-2'>Customers:</h2>
               <table className='basic'>
                   <thead>
                       <tr >
                         <td>select:</td>
                         <td>name:</td>
                         <td>email:</td>
+                        <td>orders:</td>
                       </tr>
                   </thead>
                   <tbody>
@@ -153,6 +157,14 @@ const CustomersPage = () => {
                         </td>
                         <td>
                           <span>{user.email}</span>
+                        </td>
+                        <td>
+                          <Link 
+                          className='flex items-center gap-1'
+                          href={`/customers/customer/orders/${user._id}`}
+                          >
+                            <AiOutlineQuestionCircle/>
+                          </Link>
                         </td>
                     </tr>
                     ))}

@@ -1,15 +1,16 @@
+import React from 'react';
 import Layout from '@/components/Layout';
-import CustomersPage from '@/components/CustomersPage';
+import CustomerOrdersPage from '@/components/CustomerOrdersPage';
 import { useSession, getSession } from "next-auth/react";
 import { useRouter } from 'next/router';
 
-
-export default function Customers() {
-  const {data: session } = useSession();
-
+export default function CustomerOrders() {
+  const router = useRouter();
+  const {id} = router.query;
+  
   return (
     <Layout>
-        <CustomersPage/>
+      <CustomerOrdersPage id={id}/>
     </Layout>
   )
 }

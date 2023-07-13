@@ -9,6 +9,11 @@ export default async function handler(req, res) {
     if (method === 'GET') {
         if (req.query?.id) {
             res.json(await Order.findOne({_id: req.query.id}));
+        } else if (req.query?.email) {
+            const { email } = req.query;
+            const orders = await Order.find();
+            const matchingOrders = orders.filter((order) => order.userInfo.some((user) => user.email === email));
+            res.status(200).json(matchingOrders);
         } else {
             res.json(await Order.find());
         }

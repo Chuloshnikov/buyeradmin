@@ -58,7 +58,6 @@ const CustomerOrdersPage = ({id}) => {
                     Back
                 </button>
             </div>
-            {!loading ? (
                 <div>
                     <div className='flex xs:flex-col mdl:flex-row gap-5'>
                         <div>
@@ -87,12 +86,7 @@ const CustomerOrdersPage = ({id}) => {
                          </div>
                      </div>
                  </div>
-             </div>
-                ) : (
-                <Spinner/>
-                )
-            }
-           
+             </div>          
         <div className='border-t-2 border-gray-400 mt-5'>
             {!loading ? (orders?.map((order) => (
                 <div>

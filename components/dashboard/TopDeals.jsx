@@ -40,7 +40,7 @@ const TopDeals = () => {
     }, [orders]);
 
     return (
-        <div className='border border-orange-500 w-[250px] rounded-md'>
+        <div className='border border-orange-500 w-[250px] rounded-md shadow-md'>
             <div 
             className='m-2'
             >
@@ -61,7 +61,7 @@ const TopDeals = () => {
                             >
                                 {order.userInfo.map((user) =>
                                 user.image ? (
-                                    <div className='flex justify-between'>
+                                    <div key={user.name} className='flex justify-between'>
                                         <div className='flex'>
                                             <Image key={user.name} src={user.image} width={30} height={30} className="rounded-full" alt="userImage" />
                                             <div className='text-[10px] font-semibold ml-2'>
@@ -73,9 +73,8 @@ const TopDeals = () => {
                                             <FormatePrice amount={order.amount}/>
                                         </div>
                                     </div>
-                                   
                                 ) : (
-                                    <div className='flex justify-between'>
+                                    <div key={user.name} className='flex justify-between'>
                                         <div className='flex'>
                                             <div className='bg-orange-400 text-white w-[30px] h-[30px] flex items-center justify-center rounded-full' key={user.name}>
                                                 <AiOutlineUser className='w-[20px] h-[320px]' />
@@ -85,12 +84,10 @@ const TopDeals = () => {
                                                 <p>{user.email}</p>
                                             </div>
                                         </div>
-                                         
                                         <div className='text-xs font-semibold flex flex-col justify-end ml-1'>
                                             <FormatePrice amount={order.amount}/>
                                         </div>
                                     </div>
-                                   
                                 )
                                 )}
                             </li>

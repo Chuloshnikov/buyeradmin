@@ -31,7 +31,7 @@ const TotalUsers = () => {
                             <HiUsers className='text-green-400 w-5 h-5'/>
                         </div>
                         <div className='flex flex-col justify-end'>
-                            <Link className='text-gray-400 text-sm justify-end' href="/users">Wiew All</Link>
+                            <Link className='text-gray-400 text-sm justify-end' href="/users">View All</Link>
                         </div>
                     </div>
                 </div>

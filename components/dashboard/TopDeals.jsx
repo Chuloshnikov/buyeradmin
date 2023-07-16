@@ -3,6 +3,7 @@ import axios from 'axios';
 import Spinner from '../Spinner';
 import { AiOutlineUser } from "react-icons/ai";
 import Image from 'next/image';
+import FormatePrice from '../FormatePrice';
 
 const TopDeals = () => {
     const [orders, setOrders] = useState([]);
@@ -39,13 +40,16 @@ const TopDeals = () => {
     }, [orders]);
 
     return (
-        <div className='border border-orange-500 w-[220px] rounded-md'>
+        <div className='border border-orange-500 w-[250px] rounded-md'>
             <div 
             className='m-2'
             >
                 <h3 className='text-gray-800 text-base font-semibold mb-1 px-1'>Top Deals</h3>
                 {loading ? (
-                    <Spinner/>
+                    <div className='items-center flex justify-center mx-auto'>
+                        <Spinner/>
+                    </div>
+                    
                 ) : (
                     <>
                         <ul
@@ -57,28 +61,34 @@ const TopDeals = () => {
                             >
                                 {order.userInfo.map((user) =>
                                 user.image ? (
-                                    <div className='flex justify-between'>
-                                         <Image key={user.name} src={user.image} width={30} height={30} className="rounded-full" alt="userImage" />
-                                         <div className='text-xs'>
-                                            <p>{user.name}</p> 
-                                            <p>{user.email}</p>
-                                        </div>
+                                    <div className='flex'>
                                         <div>
-                                            {order.amount}
+                                            <Image key={user.name} src={user.image} width={30} height={30} className="rounded-full" alt="userImage" />
+                                            <div className='text-[10px] font-semibold ml-2'>
+                                                <p>{user.name}</p> 
+                                                <p>{user.email}</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div className='text-xs font-semibold flex flex-col justify-end ml-1'>
+                                            <FormatePrice amount={order.amount}/>
                                         </div>
                                     </div>
                                    
                                 ) : (
-                                    <div className='flex justify-between'>
-                                         <div className='bg-orange-400 text-white w-[30px] h-[30px] flex items-center justify-center rounded-full' key={user.name}>
-                                            <AiOutlineUser className='w-[20px] h-[320px]' />
+                                    <div className='flex'>
+                                        <div>
+                                            <div className='bg-orange-400 text-white w-[30px] h-[30px] flex items-center justify-center rounded-full' key={user.name}>
+                                                <AiOutlineUser className='w-[20px] h-[320px]' />
+                                            </div>
+                                            <div className='text-[10px] font-semibold ml-2'>
+                                                <p>{user.name}</p> 
+                                                <p>{user.email}</p>
+                                            </div>
                                         </div>
-                                        <div className='text-xs'>
-                                            <p>{user.name}</p> 
-                                            <p>{user.email}</p>
-                                        </div>
-                                        <div className='text-sm'>
-                                            {order.amount}
+                                         
+                                        <div className='text-xs font-semibold flex flex-col justify-end ml-1'>
+                                            <FormatePrice amount={order.amount}/>
                                         </div>
                                     </div>
                                    

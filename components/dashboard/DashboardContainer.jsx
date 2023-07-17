@@ -1,4 +1,5 @@
 import React from 'react';
+import NBUCurrencyExchange from './NBUCurrencyExchange';
 import TopDeals from './TopDeals';
 import TotalOrders from './TotalOrders';
 import TotalProducts from './TotalProducts';
@@ -17,6 +18,9 @@ const DashboardContainer = () => {
             </div>
             <div className='flex flex-col gap-5'>
               <TotalOrders/>
+            </div>
+            <div>
+              <NBUCurrencyExchange/>
             </div>
         </div>
     </div>

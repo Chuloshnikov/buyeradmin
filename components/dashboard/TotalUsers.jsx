@@ -20,7 +20,7 @@ const TotalUsers = () => {
   return (
     <div className='border border-orange-500 w-[200px] rounded-md shadow-md'>
         <div
-        className='m-2'
+        className='m-4'
         >
              <h3 className='text-gray-800 text-base font-semibold mb-1 px-1'>Total Users</h3>
             {!loading ? (
@@ -38,7 +38,7 @@ const TotalUsers = () => {
                  
             ) :
             (
-                <div className='flex items-center justify-center'>
+                <div className='flex items-center justify-center mb-5'>
                     <Spinner/>
                 </div>
             )}

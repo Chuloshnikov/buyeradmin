@@ -1,5 +1,6 @@
 import React from 'react';
 import TopDeals from './TopDeals';
+import TotalOrders from './TotalOrders';
 import TotalProducts from './TotalProducts';
 import TotalUsers from './TotalUsers';
 
@@ -13,6 +14,9 @@ const DashboardContainer = () => {
             <div className='flex flex-col gap-5'>
               <TotalUsers/>
               <TotalProducts/>
+            </div>
+            <div className='flex flex-col gap-5'>
+              <TotalOrders/>
             </div>
         </div>
     </div>

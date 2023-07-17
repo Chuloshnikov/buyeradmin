@@ -21,9 +21,9 @@ const TotalProducts = () => {
   return (
     <div className='border border-orange-500 w-[200px] rounded-md shadow-md'>
         <div
-        className='m-2'
+        className='m-4'
         >
-             <h3 className='text-gray-800 text-base font-semibold mb-1 px-1'>Total Products</h3>
+             <h3 className='text-gray-800 text-base font-semibold mb-4 px-1'>Total Products</h3>
              {!loading ? (
                 <div>
                     <div className='flex justify-between ml-2'>
@@ -39,7 +39,7 @@ const TotalProducts = () => {
                  
             ) :
             (
-                <div className='flex items-center justify-center'>
+                <div className='flex items-center justify-center mb-5'>
                     <Spinner/>
                 </div>
             )}

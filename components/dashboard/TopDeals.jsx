@@ -46,7 +46,7 @@ const TopDeals = () => {
             >
                 <h3 className='text-gray-800 text-xl font-bold mb-1 px-1'>Top Deals</h3>
                 {loading ? (
-                    <div className='items-center flex justify-center mx-auto'>
+                    <div className='items-center flex justify-center mx-auto mb-5'>
                         <Spinner/>
                     </div>
                     

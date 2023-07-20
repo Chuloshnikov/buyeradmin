@@ -27,9 +27,14 @@ const NBUCurrencyExchange = () => {
   // Перевіряємо, чи вдалося отримати курси валют перед їх виведенням
   if (!exchangeRates) {
     return (
+      <div
+      className='border border-orange-500 w-[250px] rounded-md shadow-md'
+      >
+        <h3 className='text-gray-800 text-lg font-bold mb-1 px-1'> NBU exchange rate up to UAH:</h3>
         <div className='flex items-center justify-center mb-5'>
             <Spinner/>
         </div>
+      </div>
     );
   }
 
@@ -44,31 +49,31 @@ const NBUCurrencyExchange = () => {
         <div
         className='m-4 text-center'
         >
-            <h3 className='text-gray-800 text-lg font-bold mb-1 px-1'> NBU exchange rate up to UAH:</h3>
+            <h3 className='text-gray-800 text-lg font-bold mb-1 px-1'> NBU exchange rate up to buy UAH:</h3>
             <ul className="text-base font-semibold flex flex-col gap-5">
                 <li
                 className="flex justify-around"
                 >
-                    <span>PLN:</span> 
-                    <span>{trimToTwoDecimals(exchangeRates[32].rate)}</span>
+                    <span>1 PLN:</span> 
+                    <span>{trimToTwoDecimals(exchangeRates[32].rate).toFixed(2)} UAH</span>
                 </li>
                 <li
                 className="flex justify-around"
                 >
-                    <span>USD:</span> 
-                    <span>{trimToTwoDecimals(exchangeRates[24].rate)}</span>
+                    <span>1 USD:</span> 
+                    <span>{trimToTwoDecimals(exchangeRates[24].rate).toFixed(2)} UAH</span>
                 </li>
                 <li
                 className="flex justify-around"
                 > 
-                    <span>EUR:</span> 
-                    <span>{trimToTwoDecimals(exchangeRates[31].rate)}</span>
+                    <span>1 EUR:</span> 
+                    <span>{trimToTwoDecimals(exchangeRates[31].rate).toFixed(2)}UAH</span>
                 </li>
                 <li
                 className="flex justify-around"
                 >
-                    <span>GBP:</span> 
-                    <span>{trimToTwoDecimals(exchangeRates[23].rate)}</span>
+                    <span>1 GBP:</span> 
+                    <span>{trimToTwoDecimals(exchangeRates[23].rate).toFixed(2)} UAH</span>
                 </li>
             </ul>
         </div>

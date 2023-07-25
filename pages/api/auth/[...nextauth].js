@@ -14,7 +14,7 @@ const options = {
           return { id: 1, name: 'Admin' }
         }
         // Поверніть null, якщо авторизація не вдалася
-        return null
+        throw new Error('Неправильні облікові дані для авторизації');
       },
     }),
   ],

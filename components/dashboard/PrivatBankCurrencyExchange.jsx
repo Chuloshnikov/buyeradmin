@@ -42,6 +42,7 @@ const PrivatBankCurrencyExchange = () => {
             <ul className="text-base font-semibold flex flex-col gap-5">
               {exchangeRates.map(currency => (
                 <li 
+                key={currency.ccy}
                 className="flex justify-between"
                 >
                   <div>

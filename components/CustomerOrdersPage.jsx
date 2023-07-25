@@ -88,7 +88,6 @@ const CustomerOrdersPage = ({id}) => {
                  </div>
              </div>          
         <div className='border-t-2 border-gray-400 mt-5'>
-            {!loading ? (orders?.map((order) => (
                 <div>
                     <table className='basic mt-2 xs:text-xs md:text-base'>
                             <thead>
@@ -100,7 +99,8 @@ const CustomerOrdersPage = ({id}) => {
                                 </tr>
                             </thead>
                         <tbody>
-                                <tr>
+                        {!loading ? (orders?.map((order) => (
+                                <tr key={order._id}>
                                     <td className='hidden md:table-cell'>{order.orderId}</td>
                                     <td>{order.createdAt}</td>
                                     <td><FormatePrice amount={order.amount}/></td>
@@ -112,16 +112,15 @@ const CustomerOrdersPage = ({id}) => {
                                         </Link>
                                     </td>
                                 </tr>
+                            ))  
+                            ) : (
+                                <div className='mt-5'>
+                                    <Spinner/>
+                                </div>
+                            )}
                         </tbody>
                     </table>
                 </div>
-            ))    
-            ) : (
-                <div className='mt-5'>
-                    <Spinner/>
-                </div>
-            )}
-                
         </div>
     </div> 
 </div> 

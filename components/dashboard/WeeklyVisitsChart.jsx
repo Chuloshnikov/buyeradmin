@@ -1,7 +1,7 @@
 import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
-const DashboardChart = ({ data }) => (
+const WeeklyVisitsChart = ({ data }) => (
   <ResponsiveContainer width="100%" height={300}>
     <BarChart data={data}>
       <XAxis dataKey="name" />
@@ -12,4 +12,4 @@ const DashboardChart = ({ data }) => (
   </ResponsiveContainer>
 );
 
-export default DashboardChart;
+export default WeeklyVisitsChart;

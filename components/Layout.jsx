@@ -28,6 +28,7 @@ const Layout = ({ children }) => {
               <form onSubmit={handleSubmit} className='flex flex-col gap-2'>
                 <input
                   onChange={e => setUserName(e.target.value)}
+                  className='focus:border-orange-400 focus:border-1 focus:ring-0'
                   value={username}
                   type="text"
                   name="username"
@@ -36,6 +37,7 @@ const Layout = ({ children }) => {
                 />
                 <input
                   onChange={e => setPassword(e.target.value)}
+                  className='focus:border-orange-400 focus:border-1 focus:ring-0'
                   value={password}
                   type="password"
                   name="password"

@@ -5,11 +5,11 @@ import TopDeals from './TopDeals';
 import TotalOrders from './TotalOrders';
 import TotalProducts from './TotalProducts';
 import TotalUsers from './TotalUsers';
-import DashboardChart from './WeeklyVisitsChart';
+import WeeklyVisitsChart from './WeeklyVisitsChart';
 import Link from 'next/link';
 
 
-const WeeklyVisitsChart = () => {
+const DashboardContainer = () => {
 
   
     const data = [
@@ -53,7 +53,7 @@ const WeeklyVisitsChart = () => {
                   
                 </div>
                 <div className='max-w-[680px] mt-5'>
-                      <DashboardChart data={data}/>
+                      <WeeklyVisitsChart data={data}/>
                   </div>
             </div>
             <div className='flex flex-col gap-5'>
@@ -65,4 +65,4 @@ const WeeklyVisitsChart = () => {
   )
 }
 
-export default WeeklyVisitsChart;
+export default DashboardContainer;

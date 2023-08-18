@@ -25,7 +25,7 @@ const DashboardContainer = () => {
   return (
     <div >
         <h2 className='text-gray-800 text-lg font-bold mb-2'>Dashboard</h2>
-        <div className='flex gap-5'>
+        <div className='flex xs:flex-col xs:w-full lg:flex-row  gap-5'>
             <div>
                 <div className='flex xs:flex-col xs:items-center md:items-start md:flex-row gap-5'>
                     <TopDeals/>
@@ -52,11 +52,11 @@ const DashboardContainer = () => {
             
                   
                 </div>
-                <div className='max-w-[680px] mt-5'>
+                <div className='mx-auto xs:w-[250px] mdl:w-[680px] mt-5'>
                       <WeeklyVisitsChart data={data}/>
                   </div>
             </div>
-            <div className='flex flex-col gap-5'>
+            <div className='xs:mx-auto lg:mx-0 flex xs:flex-col sml:flex-row lg:flex-col gap-5'>
                   <PrivatBankCurrencyExchange/>
                   <NBUCurrencyExchange/>
             </div>

@@ -1,26 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import NBUCurrencyExchange from './NBUCurrencyExchange';
 import PrivatBankCurrencyExchange from './PrivatBankCurrencyExchange';
 import TopDeals from './TopDeals';
 import TotalOrders from './TotalOrders';
 import TotalProducts from './TotalProducts';
 import TotalUsers from './TotalUsers';
-import WeeklyVisitsChart from './WeeklyVisitsChart';
+import LastOrdersChart from './LastOrdersChart';
 import Link from 'next/link';
+import axios from 'axios';
 
 
 const DashboardContainer = () => {
+  const [lastOrders, setLastOrders] = useState([]);
+  console.log(lastOrders);
 
-  
-    const data = [
-      { name: 'Project 1', visits: 150 },
-      { name: 'Project 2', visits: 200 },
-      { name: 'Project 1', visits: 150 },
-      { name: 'Project 2', visits: 200 },
-      { name: 'Project 1', visits: 150 },
-      { name: 'Project 2', visits: 200 },
-
-    ]
+  useEffect(() => {
+      axios.get('/api/getOrdersLastYear').then(response => {
+        setLastOrders(response.data);
+      });
+  }, []);
+    
 
   return (
     <div >
@@ -53,7 +52,7 @@ const DashboardContainer = () => {
                   
                 </div>
                 <div className='mx-auto xs:w-[250px] mdl:w-[680px] mt-5'>
-                      <WeeklyVisitsChart data={data}/>
+                      <LastOrdersChart data={lastOrders}/>
                   </div>
             </div>
             <div className='xs:mx-auto lg:mx-0 flex xs:flex-col sml:flex-row lg:flex-col gap-5'>
